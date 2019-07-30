@@ -1,0 +1,12 @@
+body{background-color: #111111;
+    color: #fdffff;
+    width: 500px;/* この中に入る(幅） */
+    margin-right: auto;
+    margin-left : auto;/*外の空白を自動調節*/}
+button {
+    padding: 5px 20px;
+    background:linear-gradient(90deg,rgb(156, 216, 240),#ee6622);
+    color: #fdffff;
+    border-style: none;
+  }
+  input{height: 20px;}
