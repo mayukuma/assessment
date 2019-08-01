@@ -82,7 +82,6 @@
       sumOfCharCode = sumOfCharCode + userName.charCodeAt(i);
     }
 
-
     // 文字のコード番号の合計を回答の数で割って添字の数値を求める
     const index = sumOfCharCode % answers.length;
     let result = answers[index];
@@ -99,4 +98,5 @@
   console.assert(
     assessment('太郎') === assessment('太郎'),
     '入力が同じ名前なら同じ診断結果を出力する処理が正しくありません。'
-    })();
+   );
+})();
