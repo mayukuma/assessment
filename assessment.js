@@ -25,7 +25,7 @@
     removeAllChildren(resultDivided);//診断エリアの初期化
     const header = document.createElement('h3');//h3タグに「診断結果」の文字列を設定
     header.innerText = '診断結果';//h3タグに「診断結果」の文字列を設定
-    resultDivided.appendChild(paragraph);//result-areaにh３変数を代入
+    resultDivided.appendChild(h3);//result-areaにh３変数を代入
 
 
     const paragraph = document.createElement('p');
@@ -49,7 +49,7 @@ script.setAttribute('src', 'https://platform.twitter.com/widgets.js');
 tweetDivided.appendChild(script);
   };
 
-  userNameInput.onkeydown = (event) => {
+  userNameInput.onkeydown = event => {
     if (event.keyCode === 13) {
       assessmentButton.onclick();
     }
