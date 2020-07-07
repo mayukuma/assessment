@@ -1,12 +1,22 @@
-body{background-color: #111111;
-    color: #fdffff;
+body{background-color: #e5b3fe;/*#red green blue*/
+    color: #c0fdff;
     width: 500px;/* この中に入る(幅） */
     margin-right: auto;
-    margin-left : auto;/*外の空白を自動調節*/}
-button {
+    margin-left : auto;/*外の空白を自動調節*/}   
+    h1{color: #f3c4fb;
+        width: 500px;/* この中に入る(幅） */
+        margin-right: auto;
+        margin-left : auto;/*外の空白を自動調節*/
+    }
+    button {
     padding: 5px 20px;
-    background:linear-gradient(90deg,rgb(156, 216, 240),#ee6622);
+    background:linear-gradient(90deg,rgb(156, 216, 240),#d8bbff);
     color: #fdffff;
     border-style: none;
   }
+  img{width: 150px;/* この中に入る(幅） */
+    margin-right: auto;
+    margin-left : auto;/*外の空白を自動調節*/
+  }
+
   input{height: 20px;}
