@@ -4,13 +4,14 @@
   const assessmentButton = document.getElementById('assessment');
   const resultDivided = document.getElementById('result-area');
   const tweetDivided = document.getElementById('tweet-area');
+  
 
   /**
   * 指定した要素の子どもを全て除去する
   * @param {HTMLElement} element HTMLの要素
   */
   function removeAllChildren(element) {
-    while (element.firstChild) { // 子どもの要素があるかぎり削除
+    while (element.firstChild) { // 子どもの要素があるかぎり削除ru-pu
       element.removeChild(element.firstChild);
     }
   }
@@ -21,39 +22,38 @@
       return;
     }
 
-    // result-areaに 診断結果表示エリアの作成、処理実行、pタグで診断結果を表示
+    //result-areaに 診断結果表示エリアの作成、処理実行、pタグで診断結果を表示
     removeAllChildren(resultDivided);//診断エリアの初期化
-    const header = document.createElement('h3');//h3タグに「診断結果」の文字列を設定
-    header.innerText = '診断結果';//h3タグに「診断結果」の文字列を設定
+    const h3 = document.createElement('h3');
+    h3.innerText = '診断結果';//h3タグに「診断結果」の文字列を設定
     resultDivided.appendChild(h3);//result-areaにh３変数を代入
-
 
     const paragraph = document.createElement('p');
     const result = assessment(userName);
     paragraph.innerText = result;
     resultDivided.appendChild(paragraph);
 
-    // ツイートエリアの作成
+    // ツイートエリアの作成 aタグを作成して属性設定
     removeAllChildren(tweetDivided);
-    const anchor = document.createElement('a');
-    const hrefValue = 'https://twitter.com/intent/tweet?button_hashtag=%E3%81%82%E3%81%AA%E3%81%9F%E3%81%AE%E3%81%84%E3%81%84%E3%81%A8%E3%81%93%E3%82%8D&text='
+    const a = document.createElement('a');
+    const href = "https://twitter.com/intent/tweet?button_hashtag="+encodeURIComponent("あなたのいいところ")+"&ref_src=twsrc%5Etfw"
     + encodeURIComponent(result);
-    anchor.setAttribute('href', hrefValue);
-    anchor.className = 'twitter-hashtag-button';
-    anchor.setAttribute('data-text',result);
-    anchor.innerText = 'Tweet #あなたのいいところ';
-    tweetDivided.appendChild(anchor);
-   //make scriptTag
+    a.setAttribute('href', href);
+    a.className = 'twitter-hashtag-button';
+    a.setAttribute('data-text',result)
+    a.innerText = 'Tweet #あなたのいいところ';
+    tweetDivided.appendChild(a);
+//make scriptTag
 const script = document.createElement('script');
 script.setAttribute('src', 'https://platform.twitter.com/widgets.js');
 tweetDivided.appendChild(script);
   };
 
-  userNameInput.onkeydown = event => {
+  userNameInput.onkeydown =event => {
     if (event.keyCode === 13) {
       assessmentButton.onclick();
     }
-  };
+  };//  13=enterKey,TODOボタンのonclick()処理を呼び出す
 
   const answers = [
     '{userName}のいいところは声です。{userName}の特徴的な声は皆を惹きつけ、心に残ります。',
@@ -71,8 +71,7 @@ tweetDivided.appendChild(script);
     '{userName}のいいところは好奇心です。新しいことに向かっていく{userName}の心構えが多くの人に魅力的に映ります。',
     '{userName}のいいところは気配りです。{userName}の配慮が多くの人を救っています。',
     '{userName}のいいところはその全てです。ありのままの{userName}自身がいいところなのです。',
-    '{userName}のいいところは自制心です。やばいと思ったときにしっかりと衝動を抑えられる{userName}が皆から評価されています。',
-    '{userName}のいいところは優しさです。あなたの優しい雰囲気や立ち振る舞いに多くの人が癒やされています。'
+    '{userName}のいいところは自制心です。やばいと思ったときにしっかりと衝動を抑えられる{userName}が皆から評価されています。'
   ];
 
   /**
@@ -81,18 +80,19 @@ tweetDivided.appendChild(script);
   * @return {string} 診断結果
   */
   function assessment(userName) {
-    // 全文字のコード番号を取得してそれを足し合わせる
+    // 全文字のコード番号を取得してそれを足し合わせる。文字列を数値（漢字だと５桁）に変換
     let sumOfCharCode = 0;
     for (let i = 0; i < userName.length; i++) {
-      sumOfCharCode = sumOfCharCode + userName.charCodeAt(i);
-    }
+      sumOfCharCode = sumOfCharCode + userName.charCodeAt(i);//文字数で計算
+    }//回答結果の範囲（０〜15）
 
     // 文字のコード番号の合計を回答の数で割って添字の数値を求める
     const index = sumOfCharCode % answers.length;
     //診断結果
     let result = answers[index];
-    result = result.replace(/{userName}/g, userName);//置換、変数を繰り返せるg、文字列
+    result = result.replace(/\{userName\}/g, userName);//置換、変数を繰り返せるg、文字列
     return result;//診断結果
   };
-
+ 
 })();
+
